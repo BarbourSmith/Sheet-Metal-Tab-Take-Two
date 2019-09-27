@@ -78,7 +78,7 @@
                     "ioValues": [
                         {
                             "name": "default value",
-                            "ioValue": 10
+                            "ioValue": 3
                         }
                     ]
                 },
@@ -92,6 +92,19 @@
                         {
                             "name": "default value",
                             "ioValue": 10
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Constant",
+                    "name": "Constant",
+                    "x": 120,
+                    "y": 271,
+                    "uniqueID": 836427,
+                    "ioValues": [
+                        {
+                            "name": "number",
+                            "ioValue": 3
                         }
                     ]
                 },
@@ -129,7 +142,7 @@
                         },
                         {
                             "name": "thickness",
-                            "ioValue": 10
+                            "ioValue": 3
                         },
                         {
                             "name": "bent",
@@ -140,7 +153,7 @@
                             "ioValue": 0.4
                         }
                     ],
-                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const base = Square(30,3).left().extrude(length).front().color('yellow');\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength).color(\"red\");\n\n  var tab = Square(3,20).back().right().translate(tabLength,tabLength,0).extrude(tabLength).color(\"green\");\n\n  return tab\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
+                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(3,20).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n\n  return assemble(arc,tab).rotateX(90);\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
                 },
                 {
                     "atomType": "Output",
@@ -180,6 +193,12 @@
                     "ap2Name": "bent",
                     "ap1ID": 604536,
                     "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number",
+                    "ap2Name": "default value",
+                    "ap1ID": 836427,
+                    "ap2ID": 838479
                 },
                 {
                     "ap1Name": "number",
