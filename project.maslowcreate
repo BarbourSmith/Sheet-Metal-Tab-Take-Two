@@ -153,13 +153,13 @@
                             "ioValue": 0.4
                         }
                     ],
-                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(3,20).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n\n  return assemble(arc,tab).rotateX(90).translate(0,0,thickness);\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
+                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n\n  return assemble(arc,tab).rotateX(90).translate(0,0,thickness);\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
                 },
                 {
                     "atomType": "GitHubMolecule",
                     "name": "Sheet Metal Tab",
-                    "x": 475,
-                    "y": 251,
+                    "x": 513,
+                    "y": 246,
                     "uniqueID": 452696,
                     "projectID": "197395697",
                     "ioValues": [
@@ -177,7 +177,7 @@
                         },
                         {
                             "name": "Tab Height",
-                            "ioValue": 10
+                            "ioValue": 20
                         }
                     ]
                 },
