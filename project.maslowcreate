@@ -6,9 +6,142 @@
             "x": 0,
             "y": 0,
             "uniqueID": 581522,
-            "ioValues": [],
+            "ioValues": [
+                {
+                    "name": "Tab Length",
+                    "ioValue": 10
+                },
+                {
+                    "name": "Tab Height",
+                    "ioValue": 10
+                },
+                {
+                    "name": "Interior Radius",
+                    "ioValue": 10
+                },
+                {
+                    "name": "Metal Thickness",
+                    "ioValue": 10
+                },
+                {
+                    "name": "Bent",
+                    "ioValue": 1
+                }
+            ],
             "topLevel": true,
             "allAtoms": [
+                {
+                    "atomType": "Input",
+                    "name": "Tab Length",
+                    "x": 54,
+                    "y": 40,
+                    "uniqueID": 829659,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 10
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Tab Height",
+                    "x": 57,
+                    "y": 82,
+                    "uniqueID": 838258,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 10
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Interior Radius",
+                    "x": 58,
+                    "y": 130,
+                    "uniqueID": 300815,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 10
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Metal Thickness",
+                    "x": 64,
+                    "y": 182,
+                    "uniqueID": 838479,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 10
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Bent",
+                    "x": 64,
+                    "y": 228,
+                    "uniqueID": 604536,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": "1"
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Constant",
+                    "name": "K Factor",
+                    "x": 293,
+                    "y": 239,
+                    "uniqueID": 804908,
+                    "ioValues": [
+                        {
+                            "name": "number",
+                            "ioValue": 0.4
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Code",
+                    "name": "Code",
+                    "x": 478,
+                    "y": 120,
+                    "uniqueID": 492521,
+                    "ioValues": [
+                        {
+                            "name": "tabLength",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "tabHeight",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "interiorRadius",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "thickness",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "bent",
+                            "ioValue": "1"
+                        },
+                        {
+                            "name": "kFactor",
+                            "ioValue": 0.4
+                        }
+                    ],
+                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const base = Square(30,3).left().extrude(length).front().color('yellow');\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength).color(\"red\");\n\n  var tab = Square(3,20).back().right().translate(tabLength,tabLength,0).extrude(length).color(\"green\");\n\n  return tab\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
+                },
                 {
                     "atomType": "Output",
                     "name": "Output",
@@ -17,7 +150,49 @@
                     "ioValues": []
                 }
             ],
-            "allConnectors": [],
+            "allConnectors": [
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "tabLength",
+                    "ap1ID": 829659,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "tabHeight",
+                    "ap1ID": 838258,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "interiorRadius",
+                    "ap1ID": 300815,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "thickness",
+                    "ap1ID": 838479,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "bent",
+                    "ap1ID": 604536,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number",
+                    "ap2Name": "kFactor",
+                    "ap1ID": 804908,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "geometry",
+                    "ap2Name": "number or geometry",
+                    "ap1ID": 492521
+                }
+            ],
             "fileTypeVersion": 1
         }
     ],
