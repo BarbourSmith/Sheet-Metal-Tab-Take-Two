@@ -26,6 +26,10 @@
                 {
                     "name": "Bent",
                     "ioValue": 1
+                },
+                {
+                    "name": "Cut Away Geometry",
+                    "ioValue": 10
                 }
             ],
             "topLevel": true,
@@ -96,6 +100,19 @@
                     ]
                 },
                 {
+                    "atomType": "Input",
+                    "name": "Cut Away Geometry",
+                    "x": 256,
+                    "y": 37,
+                    "uniqueID": 908075,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 10
+                        }
+                    ]
+                },
+                {
                     "atomType": "Constant",
                     "name": "Constant",
                     "x": 120,
@@ -130,7 +147,7 @@
                     "ioValues": [
                         {
                             "name": "tabLength",
-                            "ioValue": 15
+                            "ioValue": 10
                         },
                         {
                             "name": "tabHeight",
@@ -146,7 +163,7 @@
                         },
                         {
                             "name": "bent",
-                            "ioValue": 1
+                            "ioValue": 10
                         },
                         {
                             "name": "kFactor",
