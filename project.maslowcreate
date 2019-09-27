@@ -21,7 +21,7 @@
                 },
                 {
                     "name": "Metal Thickness",
-                    "ioValue": 10
+                    "ioValue": 3
                 },
                 {
                     "name": "Bent",
@@ -130,7 +130,7 @@
                     "ioValues": [
                         {
                             "name": "tabLength",
-                            "ioValue": 10
+                            "ioValue": 15
                         },
                         {
                             "name": "tabHeight",
@@ -146,40 +146,14 @@
                         },
                         {
                             "name": "bent",
-                            "ioValue": 10
+                            "ioValue": 1
                         },
                         {
                             "name": "kFactor",
                             "ioValue": 0.4
                         }
                     ],
-                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n\n  return assemble(arc,tab).rotateX(90).translate(0,0,thickness);\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
-                },
-                {
-                    "atomType": "GitHubMolecule",
-                    "name": "Sheet Metal Tab",
-                    "x": 513,
-                    "y": 246,
-                    "uniqueID": 452696,
-                    "projectID": "197395697",
-                    "ioValues": [
-                        {
-                            "name": "Radius",
-                            "ioValue": 5
-                        },
-                        {
-                            "name": "Thickness",
-                            "ioValue": 3
-                        },
-                        {
-                            "name": "Length",
-                            "ioValue": 10
-                        },
-                        {
-                            "name": "Tab Height",
-                            "ioValue": 20
-                        }
-                    ]
+                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  \n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n  \n  var final;\n\n  if(bent){\n    final = assemble(arc, tab).rotateX(90).translate(0,0,thickness);\n  }\n  else{\n    const partialCircumference = (3.1415*2*(interiorRadius+thickness*kFactor))/4;\n    const flatArc = Square(partialCircumference, thickness).right().front().extrude(tabLength);\n    const translatedTab = tab.back().right().rotateZ(-90).translate(partialCircumference)\n    final = assemble(flatArc, translatedTab).rotateX(90).translate(0,0,thickness);\n  }\n\n  return final\n\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
                 },
                 {
                     "atomType": "Output",
