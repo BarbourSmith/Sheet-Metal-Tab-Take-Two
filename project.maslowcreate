@@ -124,8 +124,8 @@
                 {
                     "atomType": "Code",
                     "name": "Code",
-                    "x": 478,
-                    "y": 120,
+                    "x": 499,
+                    "y": 114,
                     "uniqueID": 492521,
                     "ioValues": [
                         {
@@ -153,12 +153,12 @@
                             "ioValue": 0.4
                         }
                     ],
-                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor){\n  console.log(\"Beginning to process tab code\")\n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n  \n  //try{\n  //  tab = difference(tab, cutAwayGeometry);\n  //}catch(err){}\n  \n  var final;\n\n  if(bent){\n    final = assemble(arc, tab).rotateX(90).translate(0,0,thickness);\n  }\n  else{\n    const partialCircumference = (3.1415*2*(interiorRadius+thickness*kFactor))/4;\n    const flatArc = Square(partialCircumference, thickness).right().front().extrude(tabLength);\n    const translatedTab = tab.back().right().rotateZ(-90).translate(partialCircumference)\n    final = assemble(flatArc, translatedTab).rotateX(90).translate(0,0,thickness);\n  }\n\n  return final\n\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor)"
+                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor, cutAwayGeometry){\n  console.log(\"Beginning to process tab code\")\n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n  \n  try{\n    tab = difference(tab, cutAwayGeometry);\n  }catch(err){}\n  \n  var final;\n\n  if(bent){\n    final = assemble(arc, tab).rotateX(90).translate(0,0,thickness);\n  }\n  else{\n    const partialCircumference = (3.1415*2*(interiorRadius+thickness*kFactor))/4;\n    const flatArc = Square(partialCircumference, thickness).right().front().extrude(tabLength);\n    const translatedTab = tab.back().right().rotateZ(-90).translate(partialCircumference)\n    final = assemble(flatArc, translatedTab).rotateX(90).translate(0,0,thickness);\n  }\n\n  return final\n\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor, cutAwayGeometry)"
                 },
                 {
                     "atomType": "Output",
                     "name": "Output",
-                    "x": 1316,
+                    "x": 954,
                     "y": 164,
                     "ioValues": []
                 }
