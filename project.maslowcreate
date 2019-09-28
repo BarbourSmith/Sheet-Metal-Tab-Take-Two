@@ -24,10 +24,6 @@
                     "ioValue": 3
                 },
                 {
-                    "name": "Cut Away Geometry",
-                    "ioValue": 10
-                },
-                {
                     "name": "Bent",
                     "ioValue": 1
                 }
@@ -96,19 +92,6 @@
                         {
                             "name": "number",
                             "ioValue": 3
-                        }
-                    ]
-                },
-                {
-                    "atomType": "Input",
-                    "name": "Cut Away Geometry",
-                    "x": 256,
-                    "y": 37,
-                    "uniqueID": 908075,
-                    "ioValues": [
-                        {
-                            "name": "default value",
-                            "ioValue": 10
                         }
                     ]
                 },
