@@ -26,6 +26,10 @@
                 {
                     "name": "Bent",
                     "ioValue": 1
+                },
+                {
+                    "name": "Cut Away Geometry",
+                    "ioValue": 10
                 }
             ],
             "topLevel": true,
@@ -109,6 +113,19 @@
                     ]
                 },
                 {
+                    "atomType": "Input",
+                    "name": "Cut Away Geometry",
+                    "x": 345,
+                    "y": 46,
+                    "uniqueID": 725594,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 10
+                        }
+                    ]
+                },
+                {
                     "atomType": "Constant",
                     "name": "K Factor",
                     "x": 293,
@@ -151,9 +168,13 @@
                         {
                             "name": "kFactor",
                             "ioValue": 0.4
+                        },
+                        {
+                            "name": "cutAwayGeometry",
+                            "ioValue": 10
                         }
                     ],
-                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor, cutAwayGeometry){\n  console.log(\"Beginning to process tab code\")\n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n  \n  try{\n    tab = difference(tab, cutAwayGeometry);\n  }catch(err){}\n  \n  var final;\n\n  if(bent){\n    final = assemble(arc, tab).rotateX(90).translate(0,0,thickness);\n  }\n  else{\n    const partialCircumference = (3.1415*2*(interiorRadius+thickness*kFactor))/4;\n    const flatArc = Square(partialCircumference, thickness).right().front().extrude(tabLength);\n    const translatedTab = tab.back().right().rotateZ(-90).translate(partialCircumference)\n    final = assemble(flatArc, translatedTab).rotateX(90).translate(0,0,thickness);\n  }\n\n  return final\n\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor, cutAwayGeometry)"
+                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor, cutAwayGeometry){\n  const arc = intersection(Square(100,100).front().right(), difference(Circle(interiorRadius+thickness),Circle(interiorRadius))).translate(0, interiorRadius, 0).extrude(tabLength);\n\n  var tab = Square(thickness,tabHeight).back().right().translate(interiorRadius,interiorRadius,0).extrude(tabLength);\n  \n  try{\n    tab = difference(tab, cutAwayGeometry);\n  }catch(err){}\n  \n  var final;\n\n  if(bent){\n    final = assemble(arc, tab).rotateX(90).translate(0,0,thickness);\n  }\n  else{\n    const partialCircumference = (3.1415*2*(interiorRadius+thickness*kFactor))/4;\n    const flatArc = Square(partialCircumference, thickness).right().front().extrude(tabLength);\n    const translatedTab = tab.back().right().rotateZ(-90).translate(partialCircumference)\n    final = assemble(flatArc, translatedTab).rotateX(90).translate(0,0,thickness);\n  }\n\n  return final\n\n}\n\nreturn main(tabLength, tabHeight, interiorRadius, thickness, bent, kFactor, cutAwayGeometry)"
                 },
                 {
                     "atomType": "Output",
@@ -198,6 +219,12 @@
                     "ap1Name": "number or geometry",
                     "ap2Name": "bent",
                     "ap1ID": 604536,
+                    "ap2ID": 492521
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "cutAwayGeometry",
+                    "ap1ID": 725594,
                     "ap2ID": 492521
                 },
                 {
